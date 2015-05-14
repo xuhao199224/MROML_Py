@@ -134,5 +134,5 @@ def drawPlot(datMat):
 
 
 
-dataMat = mat(loadDataSet('testSet.txt'))
-drawPlot(dataMat)
+# dataMat = mat(loadDataSet('testSet.txt'))
+# drawPlot(dataMat)
