@@ -13,12 +13,12 @@ def loadDataSet(filename):
     dataMat = []
     fr = open(filename, 'UTF-8')
     for line in fr.readlines():
-        print line
+        # print line
         # if line.strip().find(',') != -1:
         #     curLine = line.strip().split(',')
         # else:
         curLine = line.strip().split('\t')
-        print curLine
+        # print curLine
         fltLine = map(float, curLine)
         dataMat.append(fltLine)
     return dataMat
@@ -134,5 +134,5 @@ def drawPlot(datMat):
 
 
 
-# dataMat = mat(kMeans.loadDataSet('testSet2.txt'))
-# kMeans.drawPlot(dataMat)
+dataMat = mat(loadDataSet('testSet.txt'))
+drawPlot(dataMat)
