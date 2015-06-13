@@ -24,6 +24,20 @@ def loadDataSet(filename):
     return dataMat
 
 
+def loadBCDataSet(filename, skipLineNum):
+    dataMat = []
+    fr = open(filename, 'UTF-8')
+    for line in fr.readlines():
+        if skipLineNum > 0:
+            skipLineNum -= 1
+            continue
+        curLine = line.strip().split(',')
+        if curLine[3] >= '1':
+            fltLine = map(str, curLine)
+            dataMat.append(curLine)
+    return dataMat
+
+
 def randCent(dataSet, k):
     n = shape(dataSet)[1]
     centroids = mat(zeros((k, n)))

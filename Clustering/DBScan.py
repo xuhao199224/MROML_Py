@@ -9,7 +9,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 
-def DBScan(dist=0.3, min_neighbor=10, dataSet_scaled=None):
+def DBScan(dist=0.3, min_neighbor=10, dataSet_Ori=None, dataSet_scaled=None, equipid='default', printNoise=True):
     """Perform DBSCAN clustering from features or distance matrix.
     Parameters
     ----------
@@ -20,6 +20,7 @@ def DBScan(dist=0.3, min_neighbor=10, dataSet_scaled=None):
         The number of samples (or total weight) in a neighborhood for a point
         to be considered as a core point. This includes the point itself.
     dataSet_scaled : dataSet that has been scaled by StandardScaler().fit_transform(dataSet)
+    printNoise : true to show noise points, otherwise hide them.
     """
     if dataSet_scaled is None:
         return None
@@ -35,8 +36,11 @@ def DBScan(dist=0.3, min_neighbor=10, dataSet_scaled=None):
     ax = fig.add_subplot(111, projection='3d')
     for k, col in zip(unique_labels, colors):
         if k == -1:
+            if printNoise:
             # Black used for noise.
-            col = 'k'
+                col = 'k'
+            else:
+                continue
 
         class_member_mask = (labels == k)
 
@@ -47,6 +51,17 @@ def DBScan(dist=0.3, min_neighbor=10, dataSet_scaled=None):
         xy = dataSet_scaled[class_member_mask & ~core_samples_mask]
         plt.plot(xy[:, 0], xy[:, 1], xy[:, 2], '.', markerfacecolor=col,
                  markeredgecolor='k', markersize=6)
+
+        # print xy
+        # print orixy
+    fileObj = open(equipid+'.csv', 'w+', -1)
+    for i in range(0, len(db.labels_)):
+        tmp = dataSet_Ori[i] + [db.labels_[i]]
+        for j in range(0, len(tmp)):
+            fileObj.write(str(tmp[j]).join(', '))
+        fileObj.write('\n')
+
+
 
     plt.title('Estimated number of clusters: %d' % n_clusters_)
     plt.show()
