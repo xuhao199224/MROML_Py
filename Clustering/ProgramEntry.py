@@ -6,7 +6,7 @@ import DBScan
 from sklearn.preprocessing import StandardScaler
 
 
-equipid = '11BC53130992'
+equipid = '10BC53132191'
 # dataSet = mat(kMeans.loadDataSet('testSet.txt'))
 dataSetOri = kMeans.loadBCDataSet('/Users/hao/Documents/github/BCData/datahao/' + equipid + '.csv', 1)
 
