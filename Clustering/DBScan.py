@@ -63,5 +63,6 @@ def DBScan(dist=0.3, min_neighbor=10, dataSet_Ori=None, dataSet_scaled=None, equ
 
 
 
-    plt.title('Estimated number of clusters: %d' % n_clusters_)
+    # plt.title(u'%d' % n_clusters_)
+    plt.title(u'%d' % n_clusters_)
     plt.show()
